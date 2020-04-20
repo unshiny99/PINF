@@ -86,11 +86,32 @@
 		else return false;
 	}
 
+
+	function estSuperAdmin()
+	{
+		if(estAdminAdmin()=="adminAdmin")
+			return true;
+		else return false;
+	}
+
 	function creerUser($login,$nom,$prenom,$email,$passe)
 	{
 		$lastId = mkUser($login,$nom,$prenom,$email,$passe);
 	}
 
-
+	function getErreursAdminBlacklist($login)
+	{
+		$lesErreurs = array();
+		if($login=="")
+		{
+			$lesErreurs[]="Il faut saisir le champ login";
+		}
+		elseif(verifUtilisateur($login)==false)
+		{
+			$lesErreurs[]="L'information est éronée";
+		}
+		return $lesErreurs;
+		
+	}
 
 ?>

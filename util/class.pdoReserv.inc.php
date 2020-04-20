@@ -152,6 +152,18 @@ include_once "config.php";
 		return true;	
 	}
 
+
+	function estAdminAdmin()
+	{
+		if (isset($_SESSION["id"])) {
+			$SQL="SELECT qualification FROM utilisateur WHERE id_utilisateur='".$_SESSION["id"]."'";
+			return SQLGetChamp($SQL);
+		}
+		return "";
+	}
+
+
+
 	function estconnecte()
 	{
 		if (isset($_SESSION["pseudo"])) {
