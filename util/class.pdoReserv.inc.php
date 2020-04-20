@@ -154,8 +154,11 @@ include_once "config.php";
 
 	function estconnecte()
 	{
-		$SQL="SELECT connecte FROM utilisateur WHERE nom_utilisateur='".$_SESSION["pseudo"]."'";
-		return SQLGetChamp($SQL);
+		if (isset($_SESSION["pseudo"])) {
+			$SQL="SELECT connecte FROM utilisateur WHERE nom_utilisateur='".$_SESSION["pseudo"]."'";
+			return SQLGetChamp($SQL);
+		}
+		return ""; // on retourne une chaîne vide si pas connecté
 	}
 	
 
