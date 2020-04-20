@@ -5,8 +5,8 @@ switch($action)
 	
 	case 'seconnecter'	:
 	{
-		$login = $_REQUEST['login'];
-		$passe = $_REQUEST['passe'];
+		$login =$_REQUEST['login'];
+		$passe=$_REQUEST['passe'];
 	 	$msgErreurs = getErreursSaisieConnexion($login,$passe);
 		if (count($msgErreurs)!=0)
 		{
@@ -37,7 +37,7 @@ switch($action)
 		else
 		{
 			creerUser($login,$nom,$prenom,$email,$passe);
-			//include ("vues/v_membres.php");
+			include ("vues/v_connexion.php");
 		}
 		break;
 	}
