@@ -20,6 +20,11 @@
 	<?php
 	if(estconnect()==true)
 	{
+		if(estSuperAdmin())
+		{
+		$mavariable='<li><a href="index.php?uc=adminAdmin"> Privilège d\'admin suprème </a></li>';
+		echo $mavariable;
+		}
 		$mavariable='<li><a href="index.php?uc=deconnexion"> Se déconnecter </a></li>'; 
 		echo $mavariable;
 	}
