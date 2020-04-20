@@ -1,9 +1,8 @@
 <?php
 session_start();
+if(empty($_SESSION['reload'])){
+    $_SESSION['reload'] = 1;}
 
-if (empty($_SESSION['reload'])) {
-    $_SESSION['reload'] = 1;
-}
 
 /* ici les includes */
 
@@ -14,11 +13,15 @@ include("vues/v_bandeau.php") ;
 
 
 
-// met l'accueil si aucune vue n'est sélectionné
+
+
+
+
+// mets l'accueil si aucune vue n'est sélectionné
 // sinon mets la valeur de la requete de vue souhaité par l'utilsateur dans la variable $uc
 
 if(!isset($_REQUEST['uc']))
-    $uc = 'accueil';
+     $uc = 'accueil';
 else
 	$uc = $_REQUEST['uc'];
 
@@ -45,12 +48,12 @@ switch($uc)
         {include("controleurs/c_gestionConInsc.php");break;}
     case 'membres' :
         {include("vues/v_membres.php");break;}
+    case 'adminAdmin':
+        {include("vues/v_adminAdmin.php");break;}
 }
 
 
 //mets la vue qui est au pieds de la page
-include("vues/v_pied.php") ;
-
 
 
 ?>
