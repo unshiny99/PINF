@@ -28,7 +28,12 @@ switch($action)
 		$prenom=$_REQUEST['prenom'];
 		$email=$_REQUEST['email'];
 		$passe=$_REQUEST['passe'];
-		$msgErreurs = getErreursSaisieInscription($login,$nom,$prenom,$email,$passe);
+		if(isset($_POST['choix']))
+		{
+			$action=$_POST['choix'];	
+		}
+		else {$action="";}
+		$msgErreurs = getErreursSaisieInscription($login,$nom,$prenom,$email,$passe,$action);
 		if (count($msgErreurs)!=0)
 		{
 			include ("vues/v_erreurs.php");
@@ -36,7 +41,7 @@ switch($action)
 		}
 		else
 		{
-			creerUser($login,$nom,$prenom,$email,$passe);
+			creerUser($login,$nom,$prenom,$email,$passe,$action);
 			include ("vues/v_connexion.php");
 		}
 		break;
