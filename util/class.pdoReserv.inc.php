@@ -187,4 +187,48 @@ include_once "config.php";
 	}
 
 
+	function verifUtilisateur($id)
+	{
+		$SQL="SELECT id_utilisateur FROM utilisateur WHERE id_utilisateur='$id'";
+		$idtp=SQLGetChamp($SQL);
+		if(!$idtp) return false;
+		else return true;
+	}
+
+	function blacklistWithId($id)
+	{
+		$SQL="UPDATE utilisateur SET blacklist=1 where id_utilisateur=$id";
+		return SQLUpdate($SQL);
+	}
+
+
+	function deblacklistWithId($id)
+	{
+		$SQL="UPDATE utilisateur SET blacklist=0 where id_utilisateur=$id";
+		return SQLUpdate($SQL);
+	}
+
+
+	function verifCommerce($id)
+	{
+		$SQL="SELECT id_commerce FROM commerce WHERE id_commerce='$id'";
+		$idtp=SQLGetChamp($SQL);
+		if(!$idtp) return false;
+		else return $idtp;
+	}
+
+	function affectAction($id,$action)
+	{
+		if($action=='Mettre abonnement') 
+		{
+			$act=1;
+		}
+		else 
+		{
+			$act=0;
+		}
+		$SQL="UPDATE commerce SET abonne='$act' where id_commerce='$id'";
+		return SQLUpdate($SQL);
+	}
+
 ?>

@@ -99,14 +99,26 @@
 		$lastId = mkUser($login,$nom,$prenom,$email,$passe);
 	}
 
-	function getErreursAdminBlacklist($login)
+
+	function blacklistAvecId($id)
+	{
+		blacklistWithId($id);
+	}
+
+	function deblacklistAvecId($id)
+	{
+		deblacklistWithId($id);
+	}
+
+
+	function getErreursSaisieBlackAdminAdmin($id)
 	{
 		$lesErreurs = array();
-		if($login=="")
+		if($id=="")
 		{
 			$lesErreurs[]="Il faut saisir le champ login";
 		}
-		elseif(verifUtilisateur($login)==false)
+		elseif(verifUtilisateur($id)==false)
 		{
 			$lesErreurs[]="L'information est éronée";
 		}
@@ -114,4 +126,27 @@
 		
 	}
 
+	function affectActionSuperAdmin($id,$action)
+	{
+		affectAction($id,$action);
+	}
+
+
+	function getErreursSaisieAboAdmin($id,$action)
+	{
+		$lesErreurs = array();
+		if($id=="")
+		{
+			$lesErreurs[]="Il faut saisir le champ login";
+		}
+		elseif(verifCommerce($id)==false)
+		{
+			$lesErreurs[]="L'information est éronée";
+		}
+		if($action=="")
+		{
+			$lesErreurs[]="Il faut sélectionner une action";
+		}
+		return $lesErreurs;
+	}
 ?>
