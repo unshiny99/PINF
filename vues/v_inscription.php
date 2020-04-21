@@ -22,6 +22,13 @@
 			<label for="passe">Mot De passe*</label>
 			 <input id="passe" type="text" name="passe" value="" size="30" maxlength="45">
 		</p>
+		<p>
+			<select name="choix">
+                <option></option>
+                <option value="Professionnel">Professionnel</option>
+                <option value="Particulié">Particulié</option>
+            </select>
+		</p>
          <input type="submit" value="Valider" name="valider">
          <input type="reset" value="Annuler" name="annuler"> 
       </p>
