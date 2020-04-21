@@ -23,11 +23,11 @@
 			 <input id="passe" type="text" name="passe" value="" size="30" maxlength="45">
 		</p>
 		<p>
-		<label>qualification*</label>
+		<label>Quelle est votre qualification*</label>
 			<select name="choix">
                 <option></option>
                 <option value="Professionnel">Professionnel</option>
-                <option value="Particulié">Particulié</option>
+                <option value="Particulié">Particulier</option>
             </select>
 		</p>
          <input type="submit" value="Valider" name="valider">
