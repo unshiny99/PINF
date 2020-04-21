@@ -25,7 +25,7 @@
 		<p>
 		<label>Quelle est votre qualification ?*</label>
 			<select name="choix">
-                <option>Choisir</option>
+                <option></option>
                 <option value="Professionnel">Professionnel</option>
                 <option value="Particulié">Particulier</option>
             </select>
