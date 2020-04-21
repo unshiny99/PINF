@@ -20,10 +20,18 @@
 	<?php
 	if(estconnect()==true)
 	{
-		if(estSuperAdmin())
+		if(UtilisateurBlackliste()==false)
 		{
-		$mavariable='<li><a href="index.php?uc=adminAdmin"> Privilège d\'admin suprème </a></li>';
-		echo $mavariable;
+			if(estProAdmin())
+			{
+				$mavariable='<li><a href="index.php?uc=adminPro"> Éspace professionnel </a></li>';
+			echo $mavariable;
+			}
+			if(estSuperAdmin())
+			{
+			$mavariable='<li><a href="index.php?uc=adminAdmin"> Privilège d\'admin suprème </a></li>';
+			echo $mavariable;
+			}
 		}
 		$mavariable='<li><a href="index.php?uc=deconnexion"> Se déconnecter </a></li>'; 
 		echo $mavariable;
