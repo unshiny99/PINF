@@ -119,6 +119,11 @@ include_once "config.php";
 		echo '<meta http-equiv="refresh" content="0;URL=http://localhost/pinfmoi/index.php">';
 	}
 
+	function getId($login)
+	{
+		$SQL="SELECT id_utilisateur FROM utilisateur WHERE nom_utilisateur='$login'";
+		return SQLGetChamp($SQL);
+	}
 
 	function verifUserBdd($login,$passe)
 	{
@@ -239,4 +244,28 @@ include_once "config.php";
 		return SQLUpdate($SQL);
 	}
 
+
+	function estProAdmin()
+	{
+		if (isset($_SESSION["id"])) {
+			$SQL="SELECT qualification FROM utilisateur WHERE id_utilisateur='".$_SESSION["id"]."'";
+			return SQLGetChamp($SQL);
+		}
+		return "";
+	}
+
+	function loginUnique($login)
+	{
+		$SQL="SELECT nom_utilisateur FROM utilisateur WHERE nom_utilisateur='$login'";
+		return SQLGetChamp($SQL);
+	}
+
+
+	function estBlacklist()
+	{
+		if (isset($_SESSION["id"])) {
+			$SQL="SELECT blacklist FROM utilisateur WHERE id_utilisateur='".$_SESSION["id"]."'";
+			return SQLGetChamp($SQL);
+		}
+	}
 ?>

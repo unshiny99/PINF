@@ -46,6 +46,10 @@
 		{
 			$lesErreurs[]="Il faut saisir le champ Nom d'utilisateur";
 		}
+		elseif(loginUnique($login)==$login)
+		{
+			$lesErreurs[]="Le nom d'utilisateur est déjà utilisé";
+		}
 		if($nom=="")
 		{
 			$lesErreurs[]="Il faut saisir le champ Nom";
@@ -98,6 +102,15 @@
 		else return false;
 	}
 
+	function estPro()
+	{
+		if(estProAdmin()=='pro')
+			return true;
+		elseif(estProAdmin()=='adminAdmin')
+			return true;
+		else return false;
+	}
+
 	function creerUser($login,$nom,$prenom,$email,$passe,$action)
 	{
 		$lastId = mkUser($login,$nom,$prenom,$email,$passe,$action);
@@ -120,7 +133,7 @@
 		$lesErreurs = array();
 		if($id=="")
 		{
-			$lesErreurs[]="Il faut saisir le champ login";
+			$lesErreurs[]="Il faut saisir le champ et qu'il soit valide";
 		}
 		elseif(verifUtilisateur($id)==false)
 		{
@@ -130,6 +143,7 @@
 		
 	}
 
+	
 	function affectActionSuperAdmin($id,$action)
 	{
 		affectAction($id,$action);
@@ -152,5 +166,19 @@
 			$lesErreurs[]="Il faut sélectionner une action";
 		}
 		return $lesErreurs;
+	}
+
+	function estUser($login)
+	{
+		return getId($login);
+
+	}
+
+
+	function UtilisateurBlackliste()
+	{
+		if(estBlacklist()==1)
+			return true;
+		else false;
 	}
 ?>
