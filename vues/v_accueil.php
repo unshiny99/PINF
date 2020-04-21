@@ -1,5 +1,20 @@
 <div id="accueil">
-
-    Réservation'2i, votre site de recherche de commerces !
-    
+    <p> Réservation'2i, votre site de recherche de commerces !</p>
+    <form method="POST" action="index.php?uc=gererRecherche&action=rechercheClic">
+	    <input type="text" name="barre" id="barre" />
+	    <input type="submit" name="rechercher" value="Rechercher" />
+	</form>
+    <script src="js/jquery-3.5.0.js"></script>
+    <script type="text/javascript">
+    	//ici le futur code pour la barre de recherche
+    	/*
+    		1) recupérer la valeur dans le champ de texte à chaque touche relachée
+    		2) générer une liste comportant les résultats
+    		3) afficher cette liste dynamiquement
+    	*/
+        /*
+    	function recherche(){
+    	}
+        */
+    </script>
 </div>
