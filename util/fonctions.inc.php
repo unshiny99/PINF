@@ -113,7 +113,7 @@
 
 	function creerUser($login,$nom,$prenom,$email,$passe,$action)
 	{
-		$lastId = mkUser($login,$nom,$prenom,$email,$passe,$action);
+		mkUser($login,$nom,$prenom,$email,$passe,$action);
 	}
 
 
@@ -181,4 +181,54 @@
 			return true;
 		else false;
 	}
+
+	function estInscritCommerce()
+	{
+		if (monCommerceExiste()!="")
+			return true;
+		else
+			return false;
+	}
+
+	function estUnTel($tel)
+	{
+		return strlen($tel)== 10 && estEntier($tel);
+	}
+
+	function estEntier($tel) 
+	{
+		return preg_match("/[^0-9]/", $tel) == 0;
+	}
+
+	function getErreursSaisieInscriptionCommerce($nom,$email,$tel)
+	{
+		$lesErreurs = array();
+		if($nom=="")
+		{
+			$lesErreurs[]="Il faut saisir le nom de votre commerce";
+		}
+		if($email=="")
+		{
+			$lesErreurs[]="Il faut saisir une adresse mail professionnelle ";
+		}
+		elseif(!estUnMail($email))
+		{
+			$lesErreurs[]="Il faut saisir une adresse Email valide";
+		}
+		if($tel=="")
+		{
+			$lesErreurs[]="Il faut saisir un numéro de téléphone";
+		}
+		elseif(!estUnTel($tel))
+		{
+			$lesErreurs[]="Il faut saisir un numéro de téléphone valide";
+		}
+		return $lesErreurs;
+	}
+
+	function inscrireCommerce($nom_commerce,$email,$tel)
+	{
+		mkCommerce($nom_commerce,$email,$tel);
+	}
+
 ?>

@@ -268,4 +268,41 @@ include_once "config.php";
 			return SQLGetChamp($SQL);
 		}
 	}
+
+	function monCommerceExiste()
+	{
+		$id=$_SESSION['id'];
+		$SQL="SELECT id_commerce FROM commerce WHERE id_utilisateur='$id'";
+		return SQLGetChamp($SQL);
+	}
+
+
+
+	function mkCommerce($nom_commerce,$email,$tel)
+	{
+		$maxi="SELECT MAX(id_commerce) FROM commerce";
+		$max=SQLGetChamp($maxi);
+		$max++;
+		$id_utilisateur=$_SESSION['id'];
+		$nom=getNom();
+		$prenom=getPrenom();
+		$SQL="INSERT INTO commerce(id_commerce,id_utilisateur,nom_commerce,email,nom,prenom,tel,blacklist,abonne,chemin_photo) VALUES('$max','$id_utilisateur','$nom_commerce','$email','$nom','$prenom','$tel',0,0,'')";
+		return SQLInsert($SQL);
+	}
+
+	function getNom()
+	{
+		$id=$_SESSION['id'];
+		$SQL="SELECT nom FROM utilisateur WHERE id_utilisateur='$id'";
+		return SQLGetChamp($SQL);
+	}
+
+	function getPrenom()
+	{
+		$id=$_SESSION['id'];
+		$SQL="SELECT prenom FROM utilisateur WHERE id_utilisateur='$id'";
+		return SQLGetChamp($SQL);
+	}
+
+
 ?>
