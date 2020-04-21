@@ -39,7 +39,7 @@
 
 
 
-	function getErreursSaisieInscription($login,$nom,$prenom,$email,$passe)
+	function getErreursSaisieInscription($login,$nom,$prenom,$email,$passe,$action)
 	{
 		$lesErreurs = array();
 		if($login=="")

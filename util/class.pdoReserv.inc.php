@@ -175,12 +175,20 @@ include_once "config.php";
 	
 
 	// fonction qui ajoute un utilisateur dans la bdd //
-	function mkUser($login,$nom,$prenom,$email,$passe)
+	function mkUser($login,$nom,$prenom,$email,$passe,$action)
 	{
+		if($action=='Professionnel')
+		{
+			$act='pro';
+		}
+		else
+		{
+			$act='part';
+		}
 		$maxi="SELECT MAX(id_utilisateur) FROM utilisateur";
 		$max=SQLGetChamp($maxi);
 		$max++;
-		$qualification='client';
+		$qualification=$act;
 		// Cette fonction crée un nouvel utilisateur et renvoie l'identifiant de l'utilisateur créé
 		$SQL="INSERT INTO utilisateur(id_utilisateur,nom_utilisateur,email,passe,qualification,nom,prenom,blacklist,chemin_photo,connecte) VALUES('$max','$login','$email','$passe','$qualification','$nom','$prenom',0,'',0)";
 		return SQLInsert($SQL);
