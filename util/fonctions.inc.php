@@ -66,6 +66,10 @@
 		{
 			$lesErreurs[]="Il faut saisir le champ Mot De passe";
 		}
+		if($action=="")
+		{
+			$lesErreurs[]="Il faut sélectionner une qualification";
+		}
 		return $lesErreurs;
 	}
 
@@ -94,9 +98,9 @@
 		else return false;
 	}
 
-	function creerUser($login,$nom,$prenom,$email,$passe)
+	function creerUser($login,$nom,$prenom,$email,$passe,$action)
 	{
-		$lastId = mkUser($login,$nom,$prenom,$email,$passe);
+		$lastId = mkUser($login,$nom,$prenom,$email,$passe,$action);
 	}
 
 
