@@ -12,3 +12,11 @@
       </p>
 </form>
 </div>
+
+<div id="MesHoraires">
+<form method="POST" action="index.php?uc=gererAdminPro&action=modifHoraires">
+   <fieldset>
+     <legend>Modifier mes horaires</legend>
+
+</form>
+</div>
