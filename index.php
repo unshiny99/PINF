@@ -54,6 +54,12 @@ switch($uc)
         {include("controleurs/c_gestionConInsc.php");break;}
     case 'gererAbonnementAdminAdmin':
         {include("controleurs/c_gestionConInsc.php");break;}
+    case 'adminPro':
+        {include("vues/v_espacePro.php");break;}
+    case 'gererAdminPro':
+        {include("controleurs/c_gestionEspacePro.php");break;}
+    case 'gererRecherche' :
+        {include("controleurs/c_gestionRech.php");break;}
 }
 
 
