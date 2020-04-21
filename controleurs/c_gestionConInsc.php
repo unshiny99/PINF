@@ -49,6 +49,64 @@ break;
 		deconnect();
 		include ("vues/v_accueil.php");
 	break;
+
+
+
+	case 'blacklisterAdminAdmin':
+		$id=$_REQUEST['id'];
+		$msgErreurs = getErreursSaisieBlackAdminAdmin($id);
+		if (count($msgErreurs)!=0)
+		{
+			include ("vues/v_erreurs.php");
+			include ("vues/v_adminAdmin.php");
+		}
+		else
+		{
+			echo 'L\'utilisateur a été blacklisté';
+			blacklistAvecId($id);
+			include ("vues/v_adminAdmin.php");
+		}
+
+	break;
+
+	case 'deblacklisterAdminAdmin':
+		$id=$_REQUEST['id'];
+		$msgErreurs = getErreursSaisieBlackAdminAdmin($id);
+		if (count($msgErreurs)!=0)
+		{
+			include ("vues/v_erreurs.php");
+			include ("vues/v_adminAdmin.php");
+		}
+		else
+		{
+			echo 'L\'utilisateur a été déblacklisté';
+			deblacklistAvecId($id);
+			include ("vues/v_adminAdmin.php");
+		}
+
+	break;
+
+
+	case 'gererAbo':
+		$id=$_REQUEST['id_commerce'];
+		if(isset($_POST['choix']))
+		{
+			$action=$_POST['choix'];	
+		}
+		else {$action="";}
+		$msgErreurs = getErreursSaisieAboAdmin($id,$action);
+		if (count($msgErreurs)!=0)
+		{
+			include ("vues/v_erreurs.php");
+			include ("vues/v_adminAdmin.php");
+		}
+		else
+		{
+			echo 'L\'action : '. $action.' a été effectuée ';
+			affectActionSuperAdmin($id,$action);
+			include ("vues/v_adminAdmin.php");
+		}
+
 }
 
 
