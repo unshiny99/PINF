@@ -23,9 +23,9 @@
 			 <input id="passe" type="text" name="passe" value="" size="30" maxlength="45">
 		</p>
 		<p>
-		<label>Quelle est votre qualification*</label>
+		<label>Quelle est votre qualification ?*</label>
 			<select name="choix">
-                <option></option>
+                <option>Choisir</option>
                 <option value="Professionnel">Professionnel</option>
                 <option value="Particulié">Particulier</option>
             </select>
@@ -36,6 +36,6 @@
 </form>
 </div>
 <div>
-		Vous êtes déjà incrit ? 	<li><a href="index.php?uc=connexion"> Se connecter </a></li>
+		Vous êtes déjà inscrit ? 	<li><a href="index.php?uc=connexion"> Se connecter </a></li>
 
 	</div>
