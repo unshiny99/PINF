@@ -50,6 +50,10 @@ switch($uc)
         {include("vues/v_membres.php");break;}
     case 'adminAdmin':
         {include("vues/v_adminAdmin.php");break;}
+    case 'gererBlacklistAdminAdmin':
+        {include("controleurs/c_gestionConInsc.php");break;}
+    case 'gererAbonnementAdminAdmin':
+        {include("controleurs/c_gestionConInsc.php");break;}
 }
 
 
