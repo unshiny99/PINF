@@ -1,84 +1,144 @@
 <?php
 
-
-
-
-
-	/**
-	 * Retourne un tableau d'erreurs de saisie pour une commande
-	 *
-	 * @param $login : chaîne
-	 * @param $passe : chaîne
-	 * @return : un tableau de chaînes d'erreurs
-	*/
-	function getErreursSaisieConnexion($login,$passe)
+	////// fonction qui trouve les erreurs dans tout les formulaires ///////
+	///// a la fois pratique et non pratique car si une nouvelle variable apparait, on devrait rajouter une variable partout où la fonctions est appelée
+	function getErreurs($choix,$login,$passe,$nom,$prenom,$email,$action,$tel,$nom_commerce,$id)
 	{
 		$lesErreurs = array();
-		if($login=="")
+		//////////////    get erreurs pour la connexion
+		if($choix=='seconnecter')
 		{
-			$lesErreurs[]="Il faut saisir le champ login";
+			if($login=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ login";
+			}
+			if($passe=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ Mot de Passe";
+			}
+			elseif(verifUser($login,$passe)==false)
+			{
+				$lesErreurs[]="Les informations sont éronées";
+			}
+			return $lesErreurs;
 		}
-		if($passe=="")
+
+		//////////////    get erreurs pour l'inscripttion
+		if($choix=='sinscrire')
 		{
-			$lesErreurs[]="Il faut saisir le champ Mot de Passe";
+			if($login=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ Nom d'utilisateur";
+			}
+			elseif(loginUnique($login)==$login)
+			{
+				$lesErreurs[]="Le nom d'utilisateur est déjà utilisé";
+			}
+			if($nom=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ Nom";
+			}
+			if($prenom=="")
+			{
+			$lesErreurs[]="Il faut saisir le champ Prénom";
+			}
+			if($email=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ Email";
+			}
+			elseif(!estUnMail($email))
+			{
+				$lesErreurs[]= "Il faut mettre un mail valide";
+			}
+			if($passe=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ Mot De passe";
+			}
+			if($action=="")
+			{
+				$lesErreurs[]="Il faut sélectionner une qualification";
+			}
+			return $lesErreurs;
 		}
-		elseif(verifUser($login,$passe)==false)
-		{
-			$lesErreurs[]="Les informations sont éronées";
-		}
-		return $lesErreurs;
 		
+		//////////////    get erreurs pour (de)blacklister en vue admin admin
+		if($choix=='blacklisterAdminAdmin'||$choix=='deblacklisterAdminAdmin')
+		{
+			if($id=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ et qu'il soit valide";
+			}
+			elseif(!verifUtilisateur($id))
+			{
+				$lesErreurs[]="L'information est éronée";
+			}
+			return $lesErreurs;
+		}
+
+		//////////////    get erreurs pour la gestion des abonnements
+		if($choix=='gererAbo')
+		{
+			if($id=="")
+			{
+				$lesErreurs[]="Il faut saisir le champ login";
+			}
+			elseif(verifCommerce($id)==false)
+			{
+				$lesErreurs[]="L'information est éronée";
+			}
+			if($action=="")
+			{
+				$lesErreurs[]="Il faut sélectionner une action";
+			}
+			return $lesErreurs;
+		}
+
+
+		//////////// get erreurs pour l'inscription d'un commerce
+		if($choix=='gererAbo')
+		{
+			if($nom=="")
+			{
+				$lesErreurs[]="Il faut saisir le nom de votre commerce";
+			}
+			if($email=="")
+			{
+				$lesErreurs[]="Il faut saisir une adresse mail professionnelle ";
+			}
+			elseif(!estUnMail($email))
+			{
+				$lesErreurs[]="Il faut saisir une adresse Email valide";
+			}
+			if($tel=="")
+			{
+				$lesErreurs[]="Il faut saisir un numéro de téléphone";
+			}
+			elseif(!estUnTel($tel))
+			{
+				$lesErreurs[]="Il faut saisir un numéro de téléphone valide";
+			}
+			return $lesErreurs;
+		}
 	}
 
-
+	////////// fonction qui vérifie si la variable mail est un email
 	function estUnMail($mail)
 	{
 	return  preg_match ('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#', $mail);
 	}
 
 
-
-
-	function getErreursSaisieInscription($login,$nom,$prenom,$email,$passe,$action)
+	/////// fonction qui vérifie que la variable est bien uniquement composé de chiffres
+	function estEntier($tel) 
 	{
-		$lesErreurs = array();
-		if($login=="")
-		{
-			$lesErreurs[]="Il faut saisir le champ Nom d'utilisateur";
-		}
-		elseif(loginUnique($login)==$login)
-		{
-			$lesErreurs[]="Le nom d'utilisateur est déjà utilisé";
-		}
-		if($nom=="")
-		{
-			$lesErreurs[]="Il faut saisir le champ Nom";
-		}
-		if($prenom=="")
-		{
-		$lesErreurs[]="Il faut saisir le champ Prénom";
-		}
-		if($email=="")
-		{
-			$lesErreurs[]="Il faut saisir le champ Email";
-		}
-		elseif(!estUnMail($email))
-		{
-			$lesErreurs[]= "Il faut mettre un mail valide";
-		}
-		if($passe=="")
-		{
-			$lesErreurs[]="Il faut saisir le champ Mot De passe";
-		}
-		if($action=="")
-		{
-			$lesErreurs[]="Il faut sélectionner une qualification";
-		}
-		return $lesErreurs;
+		return preg_match("/[^0-9]/", $tel) == 0;
 	}
 
-
-
+	///////// fonction qui vérifie que la variable est bien un numéro de téléphone
+	function estUnTel($tel)
+	{
+		return strlen($tel)== 10 && estEntier($tel);
+	}
 
 	//fonction qui permet la déconnection de l'utilisateur
 	function deconnect()
@@ -127,22 +187,6 @@
 		deblacklistWithId($id);
 	}
 
-
-	function getErreursSaisieBlackAdminAdmin($id)
-	{
-		$lesErreurs = array();
-		if($id=="")
-		{
-			$lesErreurs[]="Il faut saisir le champ et qu'il soit valide";
-		}
-		elseif(verifUtilisateur($id)==false)
-		{
-			$lesErreurs[]="L'information est éronée";
-		}
-		return $lesErreurs;
-		
-	}
-
 	
 	function affectActionSuperAdmin($id,$action)
 	{
@@ -150,23 +194,7 @@
 	}
 
 
-	function getErreursSaisieAboAdmin($id,$action)
-	{
-		$lesErreurs = array();
-		if($id=="")
-		{
-			$lesErreurs[]="Il faut saisir le champ login";
-		}
-		elseif(verifCommerce($id)==false)
-		{
-			$lesErreurs[]="L'information est éronée";
-		}
-		if($action=="")
-		{
-			$lesErreurs[]="Il faut sélectionner une action";
-		}
-		return $lesErreurs;
-	}
+
 
 	function estUser($login)
 	{
@@ -190,41 +218,11 @@
 			return false;
 	}
 
-	function estUnTel($tel)
-	{
-		return strlen($tel)== 10 && estEntier($tel);
-	}
+	
 
-	function estEntier($tel) 
-	{
-		return preg_match("/[^0-9]/", $tel) == 0;
-	}
+	
 
-	function getErreursSaisieInscriptionCommerce($nom,$email,$tel)
-	{
-		$lesErreurs = array();
-		if($nom=="")
-		{
-			$lesErreurs[]="Il faut saisir le nom de votre commerce";
-		}
-		if($email=="")
-		{
-			$lesErreurs[]="Il faut saisir une adresse mail professionnelle ";
-		}
-		elseif(!estUnMail($email))
-		{
-			$lesErreurs[]="Il faut saisir une adresse Email valide";
-		}
-		if($tel=="")
-		{
-			$lesErreurs[]="Il faut saisir un numéro de téléphone";
-		}
-		elseif(!estUnTel($tel))
-		{
-			$lesErreurs[]="Il faut saisir un numéro de téléphone valide";
-		}
-		return $lesErreurs;
-	}
+
 
 	function inscrireCommerce($nom_commerce,$email,$tel)
 	{

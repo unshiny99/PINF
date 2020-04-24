@@ -2,22 +2,8 @@
 
 include_once "config.php";
 
-/** 
- * Classe d'accès aux données. 
- 
- * Utilise les services de la classe PDO
- * pour l'application lafleur
- * Les attributs sont tous statiques,
- * les 4 premiers pour la connexion
- * $monPdo de type PDO 
- * $monPdoGsb qui contiendra l'unique instance de la classe
- *
- * @package default
- * @author Patrice Grand
- * @version    1.0
- * @link       http://www.php.net/manual/fr/book.pdo.php
- */
 
+	/////////// fonction qui va update sur phpmyadmin
 	function SQLUpdate($sql)
 	{
 		global $BDD_host;
@@ -45,6 +31,10 @@ include_once "config.php";
 		
 	}
 
+
+
+
+	/////////// fonction qui permet d'inserer dans phpmyadmin
 	function SQLInsert($sql)
 	{
 		global $BDD_host;
@@ -70,6 +60,9 @@ include_once "config.php";
 		return $lastInsertId;
 	}
 
+
+
+	//////// fonction qui permet de sélectionner un champs sur phpmyadmin
 	function SQLGetChamp($sql)
 	{
 		global $BDD_host;
@@ -103,6 +96,9 @@ include_once "config.php";
 
 	}
 
+
+
+	/////////// fonction qui met un utilisateur connecté un utilisateur quand il se connect
 	function connecterUtilisateur($id_utilisateur)
 	{
 		// cette fonction affecte le booléen "connecte" à vrai pour l'utilisateur concerné 
@@ -111,6 +107,8 @@ include_once "config.php";
 		echo '<meta http-equiv="refresh" content="0;URL=http://localhost/pinfmoi/index.php">';
 	}
 
+
+	/////////// fonction qui permet de déconnecté un utilisateur dès qu'il se déconnecte
 	function deconnecterUtilisateur()
 	{
 		// cette fonction affecte le booléen "connecte" à faux pour l'utilisateur concerné 
@@ -119,36 +117,28 @@ include_once "config.php";
 		echo '<meta http-equiv="refresh" content="0;URL=http://localhost/pinfmoi/index.php">';
 	}
 
+
+	/////// fonction qui trouve l'id_utilisateur d'un user avec son nom_utilisateur et return l'id
 	function getId($login)
 	{
 		$SQL="SELECT id_utilisateur FROM utilisateur WHERE nom_utilisateur='$login'";
 		return SQLGetChamp($SQL);
 	}
 
+
+	////// function qui vérifie que l'utilisateur avec ce mot de passe et ce login existe et return l'id
 	function verifUserBdd($login,$passe)
 	{
-		// Vérifie l'identité d'un utilisateur 
-		// dont les identifiants sont passs en paramètre
-		// renvoie faux si user inconnu
-		// renvoie l'id de l'utilisateur si succès
-		//echo "coucou";
 		$SQL="SELECT id_utilisateur FROM utilisateur WHERE nom_utilisateur='$login' AND passe='$passe'";
-
 		return SQLGetChamp($SQL);
-		// si on avait besoin de plus d'un champ
-		// on aurait du utiliser SQLSelect
 	}
 
+
+	///////: fonction qui va connecté un user a la page et va appeler la connection
 	function verifUser($login,$passe)
-	{
-		
+	{	
 		$id = verifUserBdd($login,$passe);
-
 		if (!$id) return false; 
-
-		// Cas succès : on enregistre pseudo, idUser dans les variables de session 
-		// il faut appeler session_start ! 
-		// Le controleur le fait déjà !!
 		$_SESSION["pseudo"] = $login;
 		$_SESSION["connecte"] = true;
 		$_SESSION["heureConnexion"] = date("H:i:s");
