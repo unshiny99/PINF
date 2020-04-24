@@ -7,7 +7,7 @@ switch($action)
 	{
 		$login =$_REQUEST['login'];
 		$passe=$_REQUEST['passe'];
-	 	$msgErreurs = getErreursSaisieConnexion($login,$passe);
+		$msgErreurs = getErreurs("seconnecter",$login,$passe,"","","","","","","");
 		if (count($msgErreurs)!=0)
 		{
 			include ("vues/v_erreurs.php");
@@ -33,7 +33,7 @@ switch($action)
 			$action=$_POST['choix'];	
 		}
 		else {$action="";}
-		$msgErreurs = getErreursSaisieInscription($login,$nom,$prenom,$email,$passe,$action);
+		$msgErreurs = getErreurs("sinscrire",$login,$passe,$nom,$prenom,$email,$action,"","","");
 		if (count($msgErreurs)!=0)
 		{
 			include ("vues/v_erreurs.php");
@@ -59,7 +59,7 @@ break;
 
 	case 'blacklisterAdminAdmin':
 		$id=$_REQUEST['id'];
-		$msgErreurs = getErreursSaisieBlackAdminAdmin($id);
+		$msgErreurs = getErreurs("blacklisterAdminAdmin","","","","","","","","",$id);
 		if (count($msgErreurs)!=0)
 		{
 			include ("vues/v_erreurs.php");
@@ -76,7 +76,7 @@ break;
 
 	case 'deblacklisterAdminAdmin':
 		$id=$_REQUEST['id'];
-		$msgErreurs = getErreursSaisieBlackAdminAdmin($id);
+		$msgErreurs = getErreurs("deblacklisterAdminAdmin","","","","","","","","",$id);
 		if (count($msgErreurs)!=0)
 		{
 			include ("vues/v_erreurs.php");
@@ -99,7 +99,7 @@ break;
 			$action=$_POST['choix'];	
 		}
 		else {$action="";}
-		$msgErreurs = getErreursSaisieAboAdmin($id,$action);
+		$msgErreurs = getErreurs("gererAbo","","","","","",$action,"","",$id);
 		if (count($msgErreurs)!=0)
 		{
 			include ("vues/v_erreurs.php");
