@@ -70,6 +70,8 @@ switch($uc)
         
     case 'gererRecherche' :
         {include("controleurs/c_gestionRech.php");break;}
+    case 'Service' :
+        {include("controleurs/c_gestionEspacePro.php");break;}
 }
 
 
