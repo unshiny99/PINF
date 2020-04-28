@@ -246,7 +246,7 @@
 		mkService($ajout,$descr,$cout);
 	}
 
-
+	////////// fonction qui dit si un user est super admin ou non
 	function estSuperAdmin()
 	{
 		if(estAdminAdmin()=="adminAdmin")
@@ -254,6 +254,8 @@
 		else return false;
 	}
 
+
+	////////: fonction qui dit si l'utilisateur est super admin où pro
 	function estPro()
 	{
 		if(estProAdmin()=='pro')
@@ -263,21 +265,78 @@
 		else return false;
 	}
 
+
+	//// fonction qui permet de creer un utilisateur
 	function creerUser($login,$nom,$prenom,$email,$passe,$action)
 	{
 		mkUser($login,$nom,$prenom,$email,$passe,$action);
 	}
 
-
+	///////// fonction qui blacklist un utilisateur
 	function blacklistAvecId($id)
 	{
 		blacklistWithId($id);
 	}
 
+
+	///////// fonction qui deblacklist un utilisateur
 	function deblacklistAvecId($id)
 	{
 		deblacklistWithId($id);
 	}
+
+
+
+	/////// fonction qui creer des jours où le commerce travail
+	function creerJour($jour)
+	{
+		$id_commerce=monCommerceExiste();
+		$date=$_SESSION['dateActuelle'];
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		$date = date_create($date.'Next '.$jour);
+		$date=$date->format('Y-m-d');
+		insererJour($jour,$date,$id_commerce);
+		return;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 	function affectActionSuperAdmin($id,$action)

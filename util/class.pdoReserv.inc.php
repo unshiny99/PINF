@@ -175,7 +175,13 @@ include_once "config.php";
 		if (!$id) return false; 
 		$_SESSION["pseudo"] = $login;
 		$_SESSION["connecte"] = true;
-		$_SESSION["heureConnexion"] = date("H:i:s");
+		//$_SESSION["heureConnexion"] = date("H:i:s");
+		$ma_date=time("H:i:s");
+		$ma_new_date=$ma_date+7200;
+		$_SESSION["heureConnexion"]=date("H:i:s",$ma_new_date);
+		//$_SESSION["heureConnexion"]=$_SESSION["heureConnexion"]+2;
+		//$_SESSION["heureConnexion"]=date("H:i:s",$_SESSION["heureConnexion"]);
+		$_SESSION["dateActuelle"]=date("Y-m-d");
 		$_SESSION["id"]=$id;
 		connecterUtilisateur($id);
 		return true;	
@@ -251,14 +257,42 @@ include_once "config.php";
 		return SQLDelete($SQL);
 	}
 
+	////////// fonction qui va dire si un commerce a déja dit qu'il était ouvert un certain jour ou non en renvoyant true ou false
+	function jourExiste($jour)
+	{
+		$id_commerce=monCommerceExiste();
+		$SQL="SELECT jour FROM journees WHERE jour=$jour AND id_commerce=$id_commerce";
+		$idtp=SQLGetChamp($SQL);
+		if(!$idtp) return false;
+		else return true;
+	}
+
+	///////// fonction qui renvoie si le commerce a au moins un jour d'ouverture
+	function existeJourOuvertureCommerce()
+	{
+		$id_commerce=monCommerceExiste();
+		$var=array();
+		$var=getIdJourneeDansHoraires($id_commerce);
+		if(empty($var))
+		return true;
+		else
+		return false;
+	}
 
 
+	//// fonction qui recupère le jour dans la table journees
+	function getJourneeDansJournees($id_commerce,$jour)
+	{
+		$SQL="SELECT DISTINCT jour FROM journees WHERE id_commerce=$id_commerce AND jour='".$jour."'";
+		return SQLGetChamp($SQL);
+	}
 
-
-
-
-
-
+	//////// fonction qui inser jour dans bdd
+	function insererJour($jour,$date,$id_commerce)
+	{
+		$SQL = "INSERT INTO journees(jour,date_jour,id_commerce) VALUES('$jour','$date','$id_commerce') ";
+		return SQLInsert($SQL);
+	}
 
 
 
