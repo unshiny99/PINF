@@ -52,6 +52,7 @@ break;
 
 	case 'sedeconnecter' :
 		deconnect();
+		session_destroy();
 		include ("vues/v_accueil.php");
 	break;
 
@@ -111,7 +112,7 @@ break;
 			affectActionSuperAdmin($id,$action);
 			include ("vues/v_adminAdmin.php");
 		}
-
+	break;
 }
 
 
