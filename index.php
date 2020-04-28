@@ -76,6 +76,6 @@ switch($uc)
 
 
 //mets la vue qui est au pieds de la page
-
+include("vues/v_pied.php");
 
 ?>
