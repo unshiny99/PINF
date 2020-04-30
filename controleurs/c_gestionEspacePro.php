@@ -52,6 +52,7 @@ switch($action)
 			}
 			else
 			{
+				passerPro($_SESSION['id']);
 				echo 'Votre commerce a été inscrit !';
 				inscrireCommerce($nom_commerce,$email,$tel);
 				include ("vues/v_espacePro.php");
@@ -116,33 +117,62 @@ switch($action)
 	case 'modifJourOuverture':
 		{
 			$jours=array();
+			$jourmanquant=array();
 			if(isset($_POST['lundi']))
 			{
 				$jours[]=$_POST['lundi'];
+			}
+			else
+			{
+				$jourmanquant[]='Monday';
 			}
 			if(isset($_POST['mardi']))
 			{
 				$jours[]=$_POST['mardi'];
 			}
+			else
+			{
+				$jourmanquant[]='Tuesday';
+			}
 			if(isset($_POST['mercredi']))
 			{
 				$jours[]=$_POST['mercredi'];
+			}
+			else
+			{
+				$jourmanquant[]='Wednesday';
 			}
 			if(isset($_POST['jeudi']))
 			{
 				$jours[]=$_POST['jeudi'];
 			}
+			else
+			{
+				$jourmanquant[]='Thursday';
+			}
 			if(isset($_POST['vendredi']))
 			{
 				$jours[]=$_POST['vendredi'];
+			}
+			else
+			{
+				$jourmanquant[]='Friday';
 			}
 			if(isset($_POST['samedi']))
 			{
 				$jours[]=$_POST['samedi'];
 			}
+			else
+			{
+				$jourmanquant[]='Saturday';
+			}
 			if(isset($_POST['dimanche']))
 			{
 				$jours[]=$_POST['dimanche'];
+			}
+			else
+			{
+				$jourmanquant[]='Sunday';
 			}
 
 
@@ -163,6 +193,10 @@ switch($action)
 			foreach($jours as $jour)
 			{
 				creerJour($jour);
+			}
+			foreach($jourmanquant as $jr)
+			{
+				suppJour($jr);
 			}
 			/*
 			foreach($jours as $jour)
@@ -187,6 +221,7 @@ switch($action)
 			$var=date("Y-m-d",strtotime($var. '+ 2 days'));
 			echo $var;
 			*/
+			echo 'Vos jours de travail ont été modifié';
 			include ("vues/v_espacePro.php");
 
 		break;	

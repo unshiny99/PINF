@@ -6,7 +6,9 @@ switch($action)
 	case 'seconnecter'	:
 	{
 		$login =$_REQUEST['login'];
+		$login=addslashes($login);
 		$passe=$_REQUEST['passe'];
+		$passe=addslashes($passe);
 		$msgErreurs = getErreurs("seconnecter",$login,$passe,"","","","","","","");
 		if (count($msgErreurs)!=0)
 		{
