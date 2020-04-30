@@ -255,6 +255,7 @@ include_once "config.php";
 		$SQL=SQLGetChamp($SQL);
 		$SQL="DELETE FROM services WHERE nom_service='$supp' AND id_commerce='$SQL'";
 		return SQLDelete($SQL);
+		echo '<meta http-equiv="refresh" content="0;URL=http://localhost/pinfmoi/index.php">';
 	}
 
 	////////// fonction qui va dire si un commerce a déja dit qu'il était ouvert un certain jour ou non en renvoyant true ou false
@@ -267,6 +268,16 @@ include_once "config.php";
 		else return true;
 	}
 
+
+	function joursExiste()
+	{
+		$id_commerce=monCommerceExiste();
+		$SQL="SELECT jour FROM journees WHERE id_commerce=$id_commerce";
+		$idtp=SQLGetChamp($SQL);
+		if(!$idtp) return false;
+		else return true;
+	}
+	/*
 	///////// fonction qui renvoie si le commerce a au moins un jour d'ouverture
 	function existeJourOuvertureCommerce()
 	{
@@ -278,7 +289,7 @@ include_once "config.php";
 		else
 		return false;
 	}
-
+	*/
 
 	//// fonction qui recupère le jour dans la table journees
 	function getJourneeDansJournees($id_commerce,$jour)
@@ -290,10 +301,102 @@ include_once "config.php";
 	//////// fonction qui inser jour dans bdd
 	function insererJour($jour,$date,$id_commerce)
 	{
-		$SQL = "INSERT INTO journees(jour,date_jour,id_commerce) VALUES('$jour','$date','$id_commerce') ";
-		return SQLInsert($SQL);
+		$SLQ="INSERT INTO journees VALUES('".$jour."','".$date."',$id_commerce)  "; 
+		return SQLInsert($SLQ);
+	}
+		//$SQL = "IF NOT EXISTS (SELECT DISTINCT FROM journees WHERE jour=$jour AND id_commerce=$id_commerce) BEGIN INSERT INTO journees(jour,date_jour,id_commerce) VALUES('$jour','$date','$id_commerce') END ";
+		//$SQL="INSERT INTO journees VALUES(".$jour.",".$date.",".$id_commerce.") ";
+		//$SQL.="WHEN MATCHED THEN jour=$jour,id_commerce=$id_commerce";
+		
+	
+
+
+	/////// fonction qui vérifie si un jour n'est pas présent dans la bdd
+	function nestpaspresentjour($jour,$id_commerce)
+	{
+		$SQL="SELECT DISTINCT jour FROM journees WHERE jour='".$jour."' AND id_commerce='$id_commerce'";
+		return SQLGetChamp($SQL);
 	}
 
+	////////// fonction qui supprime les jours où le commerce ne travail plus, de la bdd si travaillait
+	function supprimerJoursBdd($jour,$id_commerce)
+	{
+		$SQL="DELETE FROM journees WHERE jour='".$jour."' AND id_commerce='".$id_commerce."'";
+		return SQLDelete($SQL);
+	}
+
+	////// fonction qui passe pro un utilisateur
+	function passerPro($id)
+	{
+		$SQL="UPDATE utilisateur SET qualification='pro' WHERE id_utilisateur=$id";
+		return SQLUpdate($SQL);
+	}
+
+	function aService()
+	{
+		$id_commerce=monCommerceExiste();
+		$SQL="SELECT nom_service FROM services WHERE id_commerce='".$id_commerce."'";
+		$SQL=parcoursRs(SQLSelect($SQL));
+		if($SQL!="")
+		{
+			return false;
+		}
+		return true;
+	}
+
+
+
+	function valider($nom,$type="REQUEST")
+	{	
+		switch($type)
+		{
+			case 'REQUEST': 
+			if(isset($_REQUEST[$nom]) && !($_REQUEST[$nom] == "")) 	
+				return proteger($_REQUEST[$nom]); 	
+			break;
+			case 'GET': 	
+			if(isset($_GET[$nom]) && !($_GET[$nom] == "")) 			
+				return proteger($_GET[$nom]); 
+			break;
+			case 'POST': 	
+			if(isset($_POST[$nom]) && !($_POST[$nom] == "")) 	
+				return proteger($_POST[$nom]); 		
+			break;
+			case 'COOKIE': 	
+			if(isset($_COOKIE[$nom]) && !($_COOKIE[$nom] == "")) 	
+				return proteger($_COOKIE[$nom]);	
+			break;
+			case 'SESSION': 
+			if(isset($_SESSION[$nom]) && !($_SESSION[$nom] == "")) 	
+				return $_SESSION[$nom]; 		
+			break;
+			case 'SERVER': 
+			if(isset($_SERVER[$nom]) && !($_SERVER[$nom] == "")) 	
+				return $_SERVER[$nom]; 		
+			break;
+		}
+		return false; // Si pb pour récupérer la valeur 
+	}
+
+
+	function proteger($str)
+	{
+		// attention au cas des select multiples !
+		// On pourrait passer le tableau par référence et éviter la création d'un tableau auxiliaire
+		if (is_array($str))
+		{
+			$nextTab = array();
+			foreach($str as $cle => $val)
+			{
+				$nextTab[$cle] = addslashes($val);
+			}
+			return $nextTab;
+		}
+		else 	
+			return addslashes ($str);
+		//return str_replace("'","''",$str); 	//utile pour les serveurs de bdd Crosoft
+	}
+	
 
 
 
@@ -428,8 +531,12 @@ include_once "config.php";
 		$nom=getNom();
 		$nom=addslashes($nom);
 		$prenom=getPrenom();
+		$var="SELECT DISTINCT id_utilisateur FROM commerce WHERE id_utilisateur=$id_utilisateur";
+		$var=SQLGetChamp($var);
+		if($var==$id_utilisateur) return;
 		$SQL="INSERT INTO commerce(id_commerce,id_utilisateur,nom_commerce,email,nom,prenom,tel,blacklist,abonne,chemin_photo) VALUES('$max','$id_utilisateur','$nom_commerce','$email','$nom','$prenom','$tel',0,0,'')";
 		return SQLInsert($SQL);
+		echo '<meta http-equiv="refresh" content="0;URL=http://localhost/pinfmoi/index.php">';
 	}
 
 	function getNom()

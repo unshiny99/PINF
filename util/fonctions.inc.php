@@ -292,39 +292,55 @@
 	{
 		$id_commerce=monCommerceExiste();
 		$date=$_SESSION['dateActuelle'];
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		$date = date_create($date.'Next '.$jour);
-		$date=$date->format('Y-m-d');
-		insererJour($jour,$date,$id_commerce);
-		return;
+		if(nestpaspresentjour($jour,$id_commerce)!=$jour)
+		{
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			$date = date_create($date.'Next '.$jour);
+			$date=$date->format('Y-m-d');
+			insererJour($jour,$date,$id_commerce);
+			return;
+		}
+		
 	}
 
 
-
+	///////// fonction qui supprime des jour de travail de la bdd
+	function suppJour($jour)
+	{
+		$id_commerce=monCommerceExiste();
+		if(nestpaspresentjour($jour,$id_commerce)!=$jour)
+		{
+			return;
+		}
+		else
+		{
+			supprimerJoursBdd($jour,$id_commerce);
+		}
+	}
 
 
 
