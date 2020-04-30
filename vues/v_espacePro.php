@@ -1,5 +1,5 @@
 <div id="addService">
-<form method="POST" action="index.php?uc=affectService&action=affectService">
+<form method="POST" action="index.php?uc=gererAdminPro&action=affectService">
    <fieldset>
       <legend> Agrandir mes services </legend>
       <p>

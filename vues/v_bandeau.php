@@ -22,11 +22,8 @@
 	{
 		if(UtilisateurBlackliste()==false)
 		{
-			if(estProAdmin())
-			{
-				$mavariable='<li><a href="index.php?uc=adminPro"> Éspace professionnel </a></li>';
+			$mavariable='<li><a href="index.php?uc=adminPro"> Éspace professionnel </a></li>';
 			echo $mavariable;
-			}
 			if(estSuperAdmin())
 			{
 			$mavariable='<li><a href="index.php?uc=adminAdmin"> Privilège d\'admin suprème </a></li>';
