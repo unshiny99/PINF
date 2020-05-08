@@ -44,6 +44,7 @@ $( ".selector" ).autocomplete({
 
 <div id="accueil">
     <p> Réservation'2i, votre site de recherche de commerces !</p>
+    </br></br></br>
     <form method="post">
     <label>Rechercher votre commerce :</label>
     <input type="text" name="nom_commerce" id="nom_commerce"/>

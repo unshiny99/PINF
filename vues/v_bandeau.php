@@ -1,8 +1,7 @@
 <div id="bandeau">
 <!-- Images En-t�te -->
 <!--<img src="images/menuGauche.gif"	alt="Choisir" title="Choisir"/>-->
-<h3>Réservation'2i</h3><div>
-</div>
+<h3>Réservation'2i</h3>
 
 <!--  Menu haut-->
 <ul id="menu">
