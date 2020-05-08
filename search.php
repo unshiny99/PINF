@@ -4,7 +4,7 @@ $dbHost     = "localhost";
 $dbUsername = "root"; 
 $dbPassword = ""; 
 $dbName     = "pinf_v2"; 
- 
+
 // Create database connection 
 $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 
  

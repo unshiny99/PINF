@@ -72,6 +72,18 @@ switch($uc)
         {include("controleurs/c_gestionRech.php");break;}
     case 'Service' :
         {include("controleurs/c_gestionEspacePro.php");break;}
+    case 'affectInfo':
+        {include("vues/v_espacePro.php");include("vues/v_ajoutInfo.php");break;}
+    case 'affectService':
+        {include("vues/v_espacePro.php");include("vues/v_ajoutServices.php");break;}
+    case 'suppService':
+        {include("vues/v_espacePro.php");include("vues/v_suppServices.php");break;}
+    case 'modifJourOuverture':
+        {include("vues/v_espacePro.php");include("vues/v_modifJoursOuverture.php");break;}
+    case 'blacklisterPro':
+        {include("vues/v_espacePro.php");include("vues/v_BlackPro.php");break;}
+    case 'deblacklisterPro':
+        {include("vues/v_espacePro.php");include("vues/v_DeblackPro.php");break;}
 }
 
 
