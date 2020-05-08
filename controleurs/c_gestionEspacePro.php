@@ -226,6 +226,23 @@ switch($action)
 
 		break;	
 		}
+	case 'affectInfo':
+		$nV=$_POST['ville'];
+		$cp=$_POST['cp'];
+		$adr=$_POST['adresse'];
+		$msgErreurs = getErreursAddInfo($nV,$cp,$adr);
+			if (count($msgErreurs)!=0)
+			{
+				include ("vues/v_erreurs.php");
+				include ("vues/v_espacePro.php");
+			}
+			else
+			{
+				echo 'Vos informations ont été enregistré';
+				insererInfoCommerce($nV,$cp,$adr);
+				include("vues/v_espacePro.php");
+			}
+
 
 }
 ?>
