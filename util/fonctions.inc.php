@@ -176,6 +176,31 @@
 	}
 
 
+	// fonction pour le erreurs d'info commerce
+	function getErreursAddInfo($nV,$cp,$adr)
+	{
+		$lesErreurs= array();
+		if($nV=="")
+		{
+			$lesErreurs[]="Il faut saisir le nom de votre ville";
+		}
+		if(!estUnCp($cp))
+		{
+			$lesErreurs[]="Il faut saisir un code postal valide";
+		}
+		if($adr=="")
+		{
+			$lesErreurs[]="Il faut saisir une adresse";
+		}
+		return $lesErreurs;
+	}
+
+	///// fonction est un code postal ou non
+	function estUnCp($codePostal)
+	{
+	   
+	   return strlen($codePostal)== 5 && estEntier($codePostal);
+	}
 
 
 	////////// fonction qui vérifie si la variable mail est un email
@@ -342,7 +367,15 @@
 		}
 	}
 
-
+	///// fonction qui dit si un commerce a des info commerces
+	function aInfo()
+	{
+		$id=monCommerceExiste();
+		if(!getInfoCommerce($id))
+			return false;
+		else
+			return true;
+	}
 
 
 

@@ -332,6 +332,8 @@ include_once "config.php";
 		return SQLUpdate($SQL);
 	}
 
+
+	/////// fonction qui va vérifier si vous avez des services
 	function aService()
 	{
 		$id_commerce=monCommerceExiste();
@@ -339,10 +341,26 @@ include_once "config.php";
 		$SQL=parcoursRs(SQLSelect($SQL));
 		if($SQL!="")
 		{
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
+
+	///// fonction qui va inserer les infos commerce
+	function insererInfoCommerce($nV,$cp,$adr)
+	{
+		$id=monCommerceExiste();
+		$SQL="INSERT INTO info_commerce VALUES ('$id','$nV','$cp','$adr')";
+		return SQLInsert($SQL);
+	}
+
+	//// function qui récupère les infos commerce
+	function getInfoCommerce($id_commerce)
+	{
+		$SQL="SELECT * FROM info_commerce WHERE id_commerce=$id_commerce";
+		return parcoursRs(SQLSelect($SQL));
+	}
+
 
 
 
