@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 28, 2020 at 06:58 AM
+-- Generation Time: May 08, 2020 at 01:31 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -51,8 +51,12 @@ CREATE TABLE IF NOT EXISTS `commerce` (
 
 INSERT INTO `commerce` (`id_commerce`, `id_utilisateur`, `nom_commerce`, `email`, `nom`, `prenom`, `tel`, `blacklist`, `abonne`, `chemin_photo`) VALUES
 (1, 1, 'mon site', 'ghj@gmail.com', 'Frémeaux', 'Maxime', 102030405, 0, 1, ''),
-(2, 1, 'ton site', 'ghj@gmail.com', 'Frémeaux', 'Maxime', 102030405, 0, 0, ''),
-(3, 4, 'qsdds', 'tutu@free.fr', 'tutu', 'tutu', 708090405, 0, 0, '');
+(3, 4, 'qsdds', 'tutu@free.fr', 'tutu', 'tutu', 708090405, 0, 0, ''),
+(4, 3, 'l\'urgo', 'urgo@gmail.com', 'test', 'test', 906040502, 0, 0, ''),
+(5, 7, 'yoo', 'yyoo@gmail.com', 'toi', 'toi', 201050604, 0, 0, ''),
+(6, 6, 'yo', 'yo@gmail.com', 'rou', 'zef', 202020202, 0, 0, ''),
+(7, 8, 'coco', 'coco@free.fr', 'kader', 'toto', 506040201, 0, 0, ''),
+(8, 9, 'too', 'too@free.fr', 'too', 'too', 102030405, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -86,6 +90,13 @@ CREATE TABLE IF NOT EXISTS `info_commerce` (
   KEY `id_commerce` (`id_commerce`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `info_commerce`
+--
+
+INSERT INTO `info_commerce` (`id_commerce`, `ville`, `code_postal`, `adresse`) VALUES
+(1, 'aire', 62120, '95 rue basse');
+
 -- --------------------------------------------------------
 
 --
@@ -106,146 +117,26 @@ CREATE TABLE IF NOT EXISTS `journees` (
 --
 
 INSERT INTO `journees` (`jour`, `date_jour`, `id_commerce`) VALUES
-('Monday', '2020-04-27', 1),
-('Monday', '2020-05-04', 1),
-('Monday', '2020-05-11', 1),
-('Monday', '2020-05-18', 1),
-('Monday', '2020-05-25', 1),
-('Monday', '2020-06-01', 1),
-('Monday', '2020-06-08', 1),
-('Monday', '2020-06-15', 1),
-('Monday', '2020-06-22', 1),
-('Monday', '2020-06-29', 1),
-('Tuesday', '2020-04-27', 1),
-('Tuesday', '2020-04-28', 1),
-('Tuesday', '2020-05-05', 1),
-('Tuesday', '2020-05-12', 1),
-('Tuesday', '2020-05-19', 1),
-('Tuesday', '2020-05-26', 1),
-('Tuesday', '2020-06-02', 1),
-('Tuesday', '2020-06-09', 1),
-('Tuesday', '2020-06-16', 1),
-('Tuesday', '2020-06-23', 1),
-('Wednesday', '2020-04-27', 1),
-('Wednesday', '2020-04-29', 1),
-('Wednesday', '2020-05-06', 1),
-('Wednesday', '2020-05-13', 1),
-('Wednesday', '2020-05-20', 1),
-('Wednesday', '2020-05-27', 1),
-('Wednesday', '2020-06-03', 1),
-('Wednesday', '2020-06-10', 1),
-('Wednesday', '2020-06-17', 1),
-('Wednesday', '2020-06-24', 1),
-('Thursday', '2020-04-27', 1),
-('Thursday', '2020-04-30', 1),
-('Thursday', '2020-05-07', 1),
-('Thursday', '2020-05-14', 1),
-('Thursday', '2020-05-21', 1),
-('Thursday', '2020-05-28', 1),
-('Thursday', '2020-06-04', 1),
-('Thursday', '2020-06-11', 1),
-('Thursday', '2020-06-18', 1),
-('Thursday', '2020-06-25', 1),
-('Friday', '2020-04-27', 1),
-('Friday', '2020-05-01', 1),
-('Friday', '2020-05-08', 1),
-('Friday', '2020-05-15', 1),
-('Friday', '2020-05-22', 1),
-('Friday', '2020-05-29', 1),
-('Friday', '2020-06-05', 1),
-('Friday', '2020-06-12', 1),
-('Friday', '2020-06-19', 1),
-('Friday', '2020-06-26', 1),
-('Saturday', '2020-04-27', 1),
-('Saturday', '2020-05-02', 1),
-('Saturday', '2020-05-09', 1),
-('Saturday', '2020-05-16', 1),
-('Saturday', '2020-05-23', 1),
-('Saturday', '2020-05-30', 1),
-('Saturday', '2020-06-06', 1),
-('Saturday', '2020-06-13', 1),
-('Saturday', '2020-06-20', 1),
-('Saturday', '2020-06-27', 1),
-('Sunday', '2020-04-27', 1),
-('Sunday', '2020-05-03', 1),
-('Sunday', '2020-05-10', 1),
-('Sunday', '2020-05-17', 1),
-('Sunday', '2020-05-24', 1),
-('Sunday', '2020-05-31', 1),
-('Sunday', '2020-06-07', 1),
-('Sunday', '2020-06-14', 1),
-('Sunday', '2020-06-21', 1),
-('Sunday', '2020-06-28', 1),
-('Monday', '2020-04-27', 1),
-('Monday', '2020-05-04', 1),
-('Monday', '2020-05-11', 1),
-('Monday', '2020-05-18', 1),
-('Monday', '2020-05-25', 1),
-('Monday', '2020-06-01', 1),
-('Monday', '2020-06-08', 1),
-('Monday', '2020-06-15', 1),
-('Monday', '2020-06-22', 1),
-('Monday', '2020-06-29', 1),
-('Tuesday', '2020-04-27', 1),
-('Tuesday', '2020-04-28', 1),
-('Tuesday', '2020-05-05', 1),
-('Tuesday', '2020-05-12', 1),
-('Tuesday', '2020-05-19', 1),
-('Tuesday', '2020-05-26', 1),
-('Tuesday', '2020-06-02', 1),
-('Tuesday', '2020-06-09', 1),
-('Tuesday', '2020-06-16', 1),
-('Tuesday', '2020-06-23', 1),
-('Wednesday', '2020-04-27', 1),
-('Wednesday', '2020-04-29', 1),
-('Wednesday', '2020-05-06', 1),
-('Wednesday', '2020-05-13', 1),
-('Wednesday', '2020-05-20', 1),
-('Wednesday', '2020-05-27', 1),
-('Wednesday', '2020-06-03', 1),
-('Wednesday', '2020-06-10', 1),
-('Wednesday', '2020-06-17', 1),
-('Wednesday', '2020-06-24', 1),
-('Thursday', '2020-04-27', 1),
-('Thursday', '2020-04-30', 1),
-('Thursday', '2020-05-07', 1),
-('Thursday', '2020-05-14', 1),
-('Thursday', '2020-05-21', 1),
-('Thursday', '2020-05-28', 1),
-('Thursday', '2020-06-04', 1),
-('Thursday', '2020-06-11', 1),
-('Thursday', '2020-06-18', 1),
-('Thursday', '2020-06-25', 1),
-('Friday', '2020-04-27', 1),
-('Friday', '2020-05-01', 1),
-('Friday', '2020-05-08', 1),
-('Friday', '2020-05-15', 1),
-('Friday', '2020-05-22', 1),
-('Friday', '2020-05-29', 1),
-('Friday', '2020-06-05', 1),
-('Friday', '2020-06-12', 1),
-('Friday', '2020-06-19', 1),
-('Friday', '2020-06-26', 1),
-('Saturday', '2020-04-27', 1),
-('Saturday', '2020-05-02', 1),
-('Saturday', '2020-05-09', 1),
-('Saturday', '2020-05-16', 1),
-('Saturday', '2020-05-23', 1),
-('Saturday', '2020-05-30', 1),
-('Saturday', '2020-06-06', 1),
-('Saturday', '2020-06-13', 1),
-('Saturday', '2020-06-20', 1),
-('Saturday', '2020-06-27', 1),
-('Sunday', '2020-04-27', 1),
-('Sunday', '2020-05-03', 1),
-('Sunday', '2020-05-10', 1),
-('Sunday', '2020-05-17', 1),
-('Sunday', '2020-05-24', 1),
-('Sunday', '2020-05-31', 1),
-('Sunday', '2020-06-07', 1),
-('Sunday', '2020-06-14', 1),
-('Sunday', '2020-06-21', 1),
-('Sunday', '2020-06-28', 1);
+('Monday', '2020-04-28', 6),
+('Monday', '2020-05-04', 6),
+('Monday', '2020-05-11', 6),
+('Monday', '2020-05-18', 6),
+('Monday', '2020-05-25', 6),
+('Monday', '2020-06-01', 6),
+('Monday', '2020-06-08', 6),
+('Monday', '2020-06-15', 6),
+('Monday', '2020-06-22', 6),
+('Monday', '2020-06-29', 6),
+('Sunday', '2020-04-28', 6),
+('Sunday', '2020-05-03', 6),
+('Sunday', '2020-05-10', 6),
+('Sunday', '2020-05-17', 6),
+('Sunday', '2020-05-24', 6),
+('Sunday', '2020-05-31', 6),
+('Sunday', '2020-06-07', 6),
+('Sunday', '2020-06-14', 6),
+('Sunday', '2020-06-21', 6),
+('Sunday', '2020-06-28', 6);
 
 -- --------------------------------------------------------
 
@@ -322,8 +213,9 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom_utilisateur`, `email`, `passe`
 (3, 'test2', 'test2@test.com', 'test2', 'part', 'test', 'test', 0, '', 0),
 (4, 'tutu', 'tutu@free.fr', 'tutu', 'pro', 'tutu', 'tutu', 0, '', 0),
 (5, 'sdfdfs', 'hgcjio@gmail.com', 'qzDEZRGSTHJYD', 'pro', 'dfsfds', 'dsqfds', 1, '', 0),
-(6, 'cest moi', 'sfsd@free.fr', 'zerty', 'part', 'rou', 'zef', 1, '', 0),
-(7, 'c\'et', 'cmoi@gmail.com', 'toi', 'toi', 'toi', 'toi', 0, '', 0);
+(6, 'cest moi', 'sfsd@free.fr', 'zerty', 'pro', 'rou', 'zef', 0, '', 1),
+(8, 'abdoul', 'toto@gmail.com', 'toto2', 'pro', 'kader', 'toto', 0, '', 0),
+(9, 'too', 'too@free.fr', 'too', 'pro', 'too', 'too', 0, '', 1);
 
 --
 -- Constraints for dumped tables
