@@ -195,6 +195,20 @@
 		return $lesErreurs;
 	}
 
+	///// fonction pour les erreurs de modification info commerce
+	function getErreursModifInfo($ville,$cp,$adresse)
+	{
+		$lesErreurs=array();
+		if($cp!="")
+		{
+			if(!estUnCp($cp))
+			{
+				$lesErreurs[]="Il faut saisir un code postal valide";
+			}
+		}
+		return $lesErreurs;
+	}
+
 	///// fonction est un code postal ou non
 	function estUnCp($codePostal)
 	{
@@ -376,6 +390,16 @@
 		else
 			return true;
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 

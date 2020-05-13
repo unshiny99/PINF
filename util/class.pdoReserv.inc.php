@@ -357,9 +357,67 @@ include_once "config.php";
 	//// function qui récupère les infos commerce
 	function getInfoCommerce($id_commerce)
 	{
-		$SQL="SELECT * FROM info_commerce WHERE id_commerce=$id_commerce";
+		$SQL="SELECT ville, code_postal, adresse FROM info_commerce WHERE id_commerce=$id_commerce";
 		return parcoursRs(SQLSelect($SQL));
 	}
+
+	////// fonction qui permet de modifier les informations commerce
+	function updateInfoCommerce($ville,$cp,$adresse)
+	{
+		$id=monCommerceExiste();
+		if($ville!="")
+		{
+			$SQL="UPDATE info_commerce SET ville='".$ville."' WHERE id_commerce=$id";
+			SQLUpdate($SQL);
+		}
+		if($cp!="")
+		{
+			$SQL="UPDATE info_commerce SET code_postal=$cp WHERE id_commerce=$id";
+			SQLUpdate($SQL);
+		}
+		if($adresse!="")
+		{
+			$SQL="UPDATE info_commerce SET adresse='".$adresse."' WHERE id_commerce=$id";
+			SQLUpdate($SQL);
+		}
+	}
+
+	/////// fonction qui va rechercher les commerces
+	function rechercherNomCommerce($contenu)
+	{
+		$SQL="SELECT nom_commerce,email,nom,prenom,tel,ville,code_postal,adresse FROM commerce t1,info_commerce t2 WHERE t1.id_commerce=t2.id_commerce AND t1.nom_commerce='".$contenu."'";
+		return parcoursRs(SQLSelect($SQL));
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
