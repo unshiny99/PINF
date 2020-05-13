@@ -226,7 +226,9 @@ switch($action)
 
 		break;	
 		}
+
 	case 'affectInfo':
+		{
 		$nV=$_POST['ville'];
 		$cp=$_POST['cp'];
 		$adr=$_POST['adresse'];
@@ -242,7 +244,29 @@ switch($action)
 				insererInfoCommerce($nV,$cp,$adr);
 				include("vues/v_espacePro.php");
 			}
+		break;
+		}
 
-
+	case 'modifInfo':
+		{
+			$ville=$_POST['ville'];
+			$ville=addslashes($ville);
+			$cp=$_POST['cp'];
+			$adresse=$_POST['adresse'];
+			$adresse=addslashes($adresse);
+			$msgErreurs = getErreursModifInfo($ville,$cp,$adresse);
+			if (count($msgErreurs)!=0)
+			{
+				include("vues/v_espacePro.php");
+				include("vues/v_erreurs.php");
+				include("vues/v_modifInfo.php");
+			}
+			else
+			{
+				echo 'Vos informations commerces ont été mis à jour ';
+				updateInfoCommerce($ville,$cp,$adresse);
+				include("vues/v_espacePro.php");
+			}
+		}
 }
 ?>
