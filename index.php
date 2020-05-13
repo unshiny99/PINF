@@ -74,6 +74,8 @@ switch($uc)
         {include("controleurs/c_gestionEspacePro.php");break;}
     case 'affectInfo':
         {include("vues/v_espacePro.php");include("vues/v_ajoutInfo.php");break;}
+    case 'modifInfo':
+        {include("vues/v_espacePro.php");include("vues/v_modifInfo.php");break;}
     case 'affectService':
         {include("vues/v_espacePro.php");include("vues/v_ajoutServices.php");break;}
     case 'suppService':
