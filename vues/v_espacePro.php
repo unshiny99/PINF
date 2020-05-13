@@ -38,13 +38,13 @@
             echo $mavariable;
             $mavariable='<li><a href="index.php?uc=suppService"> Restreindre mes services proposé(s) </a></li>'; 
             echo $mavariable;
-            $mavariable='<li><a href="index.php?uc=modifJourOuverture"> Modifier mes horaires d\'ouverture </a></li>'; 
+            $mavariable='<li><a href="index.php?uc=modifJourOuverture"> Modifier mes jours d\'ouverture </a></li>'; 
             echo $mavariable;
             if(joursExiste())
             {
-               $mavariable='<li><a href="index.php?uc=blacklisterPro"> Blacklister un client </a></li>'; 
+               $mavariable='<li><a href="index.php?uc=blacklisterPro"> Blacklister un client de votre site </a></li>'; 
                echo $mavariable;
-               $mavariable='<li><a href="index.php?uc=deblacklisterPro"> Déblacklister un client </a></li>'; 
+               $mavariable='<li><a href="index.php?uc=deblacklisterPro"> Déblacklister un client de votre site </a></li>'; 
                echo $mavariable;
             }
 

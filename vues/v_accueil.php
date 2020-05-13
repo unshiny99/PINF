@@ -45,11 +45,12 @@ $( ".selector" ).autocomplete({
 <div id="accueil">
     <p> Réservation'2i, votre site de recherche de commerces !</p>
     </br></br></br>
-    <form method="post">
-    <label>Rechercher votre commerce :</label>
+    <form method="post" action="index.php?uc=gererRecherche&action=recherche">
+    <label>Rechercher le nom du commerce :</label>
     <input type="text" name="nom_commerce" id="nom_commerce"/>
     <input type="submit" name="submit" value="SUBMIT"/>
 </form>
+
 
 </div>
 
