@@ -1,9 +1,10 @@
 <?php 
+include("util/config.php");
 // Database configuration 
-$dbHost     = "localhost"; 
-$dbUsername = "root"; 
-$dbPassword = ""; 
-$dbName     = "pinf_v2"; 
+$dbHost     = $BDD_host; 
+$dbUsername = $BDD_user; 
+$dbPassword = $BDD_password; 
+$dbName     = $BDD_base; 
 
 // Create database connection 
 $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 
