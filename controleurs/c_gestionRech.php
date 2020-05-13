@@ -12,7 +12,7 @@ switch($action)
 		}
 		else
 		{
-			if(!rechercherNomCommerce($contenu))
+			if(rechercherNomCommerce($contenu)=="")
 			{
 				echo "Ce nom de commerce n'existe pas !";
 				include("vues/v_accueil.php");
