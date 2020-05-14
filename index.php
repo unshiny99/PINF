@@ -85,7 +85,7 @@ switch($uc)
     case 'blacklisterPro':
         {include("vues/v_espacePro.php");include("vues/v_BlackPro.php");break;}
     case 'deblacklisterPro':
-        {include("vues/v_espacePro.php");include("vues/v_DeblackPro.php");break;}
+        {include("vues/v_espacePro.php");include("vues/v_deblackPro.php");break;}
 }
 
 
