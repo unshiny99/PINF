@@ -172,6 +172,12 @@
 		{
 			$lesErreurs[]="L'utilisateur que vous avez demandé de blacklister n'existe pas";
 		}
+		if(getId($login)!="" && estSuperAdmin($login)) {
+			$lesErreurs[]="Impossible de (dé)blacklister un administrateur !";
+		}
+		if(getId($login)!="" && estPro($login) && !estSuperAdmin($login)) { // donc impossibilité de s'autoblacklister gérée
+			$lesErreurs[]="Impossible de (dé)blacklister un autre professionnel !";
+		}
 		return $lesErreurs;
 	}
 
