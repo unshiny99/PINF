@@ -628,6 +628,11 @@ include_once "config.php";
 		$SQL="SELECT prenom FROM utilisateur WHERE id_utilisateur='$id'";
 		return SQLGetChamp($SQL);
 	}
-
+	
+	function getQualif($id)
+	{
+		$SQL="SELECT qualification FROM utilisateur WHERE id_utilisateur='$id'";
+		return SQLGetChamp($SQL);
+	}
 
 ?>
