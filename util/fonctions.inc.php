@@ -18,7 +18,7 @@
 			}
 			elseif(verifUser($login,$passe)==false)
 			{
-				$lesErreurs[]="Les informations sont éronées";
+				$lesErreurs[]="Les informations sont erronées";
 			}
 			return $lesErreurs;
 		}
@@ -70,7 +70,11 @@
 			}
 			elseif(!verifUtilisateur($id))
 			{
-				$lesErreurs[]="L'information est éronée";
+				$lesErreurs[]="L'information est erronée";
+			}
+			if(getQualif($id)=="adminAdmin")
+			{
+				$lesErreurs[]="Vous ne pouvez pas (dé)blacklister un administrateur";
 			}
 			return $lesErreurs;
 		}
@@ -84,7 +88,7 @@
 			}
 			elseif(verifCommerce($id)==false)
 			{
-				$lesErreurs[]="L'information est éronée";
+				$lesErreurs[]="L'information est erronée";
 			}
 			if($action=="")
 			{
