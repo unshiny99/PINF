@@ -1,0 +1,28 @@
+Projet Informatique : Les Redoublants (Prise de rendez-vous en ligne)
+Collaborateurs : Maxime Frémeaux, Clément Goudal
+
+Fonctionnalités restant à implémenter :
+    * afficher uniquement les commerces dits abonnés
+    * demander les horaires du commerce et les stocker dans la BDD
+    * afficher et modifier ces horaires au besoin
+    * prise de rendez-vous pour n'importe quel utilisateur connecté
+    * affichage des rendez-vous pris pour un utilisateur connecté (espace personnel)
+    * possibilité d'annuler un rendez-vous
+    * idéalement, recherche en fonction d'autres paramètres que le nom du commerce (secteur d'activité par exemple)
+    * mise en page à l'aide de la feuille de style
+    
+Fonctionnalités existantes :
+    * inscription d'un utilisateur
+    * connexion et déconnexion d'un utilisateur
+    * recherche de commerce en fonction du nom
+    * affichage de ces commerces (adresse)
+    * espace professionel pour les commerçants :
+        * ajout d'un commerce
+        * ajout d'un secteur d'activité
+        * modification du commerce
+        * dé.blacklistage d'un client (pour tout le site)
+    * espace administration :
+        * dé.blacklistage d'un particulier ou un professionnel
+        * changement de statut d'un professionel (abonné ou non)
+    * banderole de liens intuitive permettant une navigation facilitée
+    * erreurs affichées en cas de mauvaise utilisation d'un champ de données
